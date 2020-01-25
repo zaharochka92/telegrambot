@@ -1,0 +1,10 @@
+
+.idea
+venv
+__pycache__
+.idea/misc.xml
+.idea/untitled.iml
+.idea/workspace.xml
+__pycache__/exchange.cpython-37.pyc
+__pycache__/weather.cpython-37.pyc
+test.py
