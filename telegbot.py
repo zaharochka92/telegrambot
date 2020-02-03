@@ -5,6 +5,7 @@ from weather import weather
 from exchange import currence
 from  meduzanews import meduzanews
 from overclockersnews import overclockersnews
+from probki import probki
 
 
 
@@ -31,16 +32,20 @@ def get_text_messages(message):
         item3 = types.KeyboardButton('Новости')
         item4 = types.KeyboardButton('Пробки')
         markup.add(item1, item2, item3, item4)
-        bot.send_message(message.chat.id, "Кнопки должны были появится педрила!",  reply_markup=markup)
+        bot.send_message(message.chat.id, "Кнопки должны были появится!",  reply_markup=markup)
         pass
     elif message.text == "/help":
-        bot.send_message(message.from_user.id, "Пользуйся кнопками педрила. Если у тебя нет кнопок напиши Функции(Ф/F) или  функции(ф/f) и появятся кнопки педрила")
+        bot.send_message(message.from_user.id, "Пользуйся кнопками! Если у тебя нет кнопок напиши Функции(Ф/F) или  функции(ф/f) и появятся кнопки!")
     elif  message.text == "Погода":
         a, _ = weather()
         bot.send_message(message.from_user.id, a)
     elif  message.text == "Валюта":
         b, _ = currence()
         bot.send_message(message.from_user.id, b)
+    elif  message.text == "Пробки":
+        d=probki()
+        bot.send_message(message.from_user.id, d)
+        bot.send_photo(message.from_user.id, open('probki.jpg', 'rb'))
     elif  message.text == "Новости":
         markup = types.InlineKeyboardMarkup(row_width=2)
         item1 = types.InlineKeyboardButton("Meduza", callback_data='meduza')
@@ -49,7 +54,7 @@ def get_text_messages(message):
         bot.send_message(message.chat.id, 'Новости', reply_markup=markup)
 
     else:
-        bot.send_message(message.from_user.id, "Я тебя не понимаю педрила. Напиши /help.")
+        bot.send_message(message.from_user.id, "Я тебя не понимаю! Напиши /help.")
 
 
 @bot.callback_query_handler(func=lambda call: True)
