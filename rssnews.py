@@ -38,4 +38,4 @@ def habrhabr():
     #     msg += article['link']
     #     msg += '\n'
     return msg
-print(habrhabr())
+
