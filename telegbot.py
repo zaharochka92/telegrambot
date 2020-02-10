@@ -4,7 +4,8 @@ bot = telebot.TeleBot('926769897:AAEJPSp4BOrg5ba_iwobt2zkbIgT9F1dtIc') #token bl
 from weather import weather
 from exchange import currence
 from  meduzanews import meduzanews
-from overclockersnews import overclockersnews
+from rssnews import overclockersnews
+from rssnews import habrhabr
 from probki import probki
 
 
@@ -50,7 +51,8 @@ def get_text_messages(message):
         markup = types.InlineKeyboardMarkup(row_width=2)
         item1 = types.InlineKeyboardButton("Meduza", callback_data='meduza')
         item2 = types.InlineKeyboardButton("Overclockers", callback_data='overclockers')
-        markup.add(item1, item2)
+        item3 = types.InlineKeyboardButton("HabrHabr", callback_data='habr')
+        markup.add(item1, item2, item3)
         bot.send_message(message.chat.id, 'Новости', reply_markup=markup)
 
     else:
@@ -68,6 +70,11 @@ def callback_worker(call):
         c=overclockersnews()
         bot.send_message(call.message.chat.id, c)
         bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Новости Overclockers",
+                              reply_markup=None)
+    elif call.data == 'habr':
+        c=habrhabr()
+        bot.send_message(call.message.chat.id, c)
+        bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Новости HabrHabr",
                               reply_markup=None)
     else:
         bot.send_message(message.from_user.id, 'я тебя не понимать')

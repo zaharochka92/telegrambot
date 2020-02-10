@@ -10,7 +10,7 @@ def probki():
 
 
     r = requests.get('https://export.yandex.ru/bar/reginfo.xml?region=213')
-    soup = BeautifulSoup(r.text,features="lxml")
+    soup = BeautifulSoup(r.text)
     a=soup.prettify()
     b=a.find('<hint lang="ru">')
     c=a.find('</hint>')
