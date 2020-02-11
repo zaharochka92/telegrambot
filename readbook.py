@@ -10,9 +10,3 @@ def readread():
 def clearread():
     with open('reed.txt', 'w') as f:
         f.write('')
-line='https://habr.com/ru/post/99923/'
-addread(line)
-clearread()
-addread(line)
-addread(line)
-print(readread())
