@@ -15,3 +15,4 @@ def probki():
     b=a.find('<hint lang="ru">')
     c=a.find('</hint>')
     return a[b+16:c]
+# test test
