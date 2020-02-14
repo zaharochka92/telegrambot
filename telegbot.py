@@ -10,19 +10,6 @@ from probki import probki
 
 
 
-
-# def welcome(message):
-#
-#     bot.send_sticker(message.chat.id, 'hellow')
-#
-#
-#     bot.message_handler(commands=['start'])
-
-
-
-
-    # bot.send_message(message.chat.id,'ghbdtn')
-
 @bot.message_handler(content_types=['text'])
 def get_text_messages(message):
 
