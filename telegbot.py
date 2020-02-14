@@ -38,8 +38,9 @@ def get_text_messages(message):
         markup = types.InlineKeyboardMarkup(row_width=2)
         item1 = types.InlineKeyboardButton("Meduza", callback_data='meduza')
         item2 = types.InlineKeyboardButton("Overclockers", callback_data='overclockers')
-        item3 = types.InlineKeyboardButton("HabrHabr", callback_data='habr')
-        markup.add(item1, item2, item3)
+        item3 = types.InlineKeyboardButton("Habr(Bestday)", callback_data='habrday')
+        item4 = types.InlineKeyboardButton("HabrHabr(Bestweek)", callback_data='habrweek')
+        markup.add(item1, item2, item3, item4)
         bot.send_message(message.chat.id, 'Новости', reply_markup=markup)
 
     else:
@@ -58,10 +59,15 @@ def callback_worker(call):
         bot.send_message(call.message.chat.id, c)
         bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Новости Overclockers",
                               reply_markup=None)
-    elif call.data == 'habr':
-        c=habrhabr()
+    elif call.data == 'habrday':
+        c=habrhabr(0)
         bot.send_message(call.message.chat.id, c)
-        bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Новости HabrHabr",
+        bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Новости HabrHabr - лучшее за день ",
+                              reply_markup=None)
+    elif call.data == 'habrweek':
+        c=habrhabr(1)
+        bot.send_message(call.message.chat.id, c)
+        bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Новости HabrHabr - лучшее за неделю",
                               reply_markup=None)
     else:
         bot.send_message(message.from_user.id, 'я тебя не понимать')
