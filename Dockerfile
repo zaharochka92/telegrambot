@@ -12,3 +12,5 @@ COPY rssnews.py ./
 COPY probki.py ./
 COPY weather.py ./
 COPY mikrotik.py ./
+
+CMD [ "python", "./your-daemon-or-script.py" ]
