@@ -7,7 +7,7 @@ from  meduzanews import meduzanews
 from rssnews import overclockersnews
 from rssnews import habrhabr
 from probki import probki
-
+from mikrotik import mikrotik_cmd
 
 
 @bot.message_handler(content_types=['text'])
@@ -19,7 +19,8 @@ def get_text_messages(message):
         item2 = types.KeyboardButton('Валюта')
         item3 = types.KeyboardButton('Новости')
         item4 = types.KeyboardButton('Пробки')
-        markup.add(item1, item2, item3, item4)
+        item5 = types.KeyboardButton('Mikrotik')
+        markup.add(item1, item2, item3, item4, item5)
         bot.send_message(message.chat.id, "Кнопки должны были появится!",  reply_markup=markup)
         pass
     elif message.text == "/help":
@@ -42,7 +43,12 @@ def get_text_messages(message):
         item4 = types.InlineKeyboardButton("HabrHabr(Bestweek)", callback_data='habrweek')
         markup.add(item1, item2, item3, item4)
         bot.send_message(message.chat.id, 'Новости', reply_markup=markup)
-
+    elif  message.text == "Mikrotik":
+        markup = types.InlineKeyboardMarkup(row_width=2)
+        item1 = types.InlineKeyboardButton("home", callback_data='mikrohome')
+        item2 = types.InlineKeyboardButton("dacha", callback_data='mikrodacha')
+        markup.add(item1, item2)
+        bot.send_message(message.chat.id, 'Mikrotik', reply_markup=markup)
     else:
         bot.send_message(message.from_user.id, "Я тебя не понимаю! Напиши /help.")
 
@@ -68,6 +74,16 @@ def callback_worker(call):
         c=habrhabr(1)
         bot.send_message(call.message.chat.id, c)
         bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Новости HabrHabr - лучшее за неделю",
+                              reply_markup=None)
+    elif call.data == 'mikrodacha':
+        c=mikrotik_cmd('192.168.42.200')
+        bot.send_message(call.message.chat.id, c)
+        bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Информация Микротик Дача",
+                              reply_markup=None)
+    elif call.data == 'mikrohome':
+        c=mikrotik_cmd('192.168.42.100')
+        bot.send_message(call.message.chat.id, c)
+        bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Информация Микротик Дом",
                               reply_markup=None)
     else:
         bot.send_message(message.from_user.id, 'я тебя не понимать')
