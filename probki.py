@@ -9,10 +9,31 @@ def probki():
         handler.write(img_data)
 
 
-    r = requests.get('https://export.yandex.ru/bar/reginfo.xml?region=213')
-    soup = BeautifulSoup(r.text)
-    a=soup.prettify()
-    b=a.find('<hint lang="ru">')
-    c=a.find('</hint>')
-    return a[b+16:c]
-# test test
+    request = requests.get('https://export.yandex.ru/bar/reginfo.xml?region=213')
+    soup = BeautifulSoup(request.text)
+    msg=''
+    page_parse =soup.prettify()
+    level_prboki_start = page_parse.find('<level>')
+    level_prboki_end = page_parse.find('</level>')
+    probki_lvl = page_parse[level_prboki_start+8:level_prboki_end]
+    probki_lvl = probki_lvl.replace(' ','')
+    probki_lvl = probki_lvl.replace('\n', '')
+    if ord(probki_lvl)==48 or ord(probki_lvl)>52 or probki_lvl=='10':
+        balli='баллов'
+    elif ord(probki_lvl)==49 :
+        balli='балл'
+    else : balli = 'балла'
+    msg += f'- Пробки в Москве {probki_lvl} {balli}:'
+    msg += '\n'
+    description_probki_start = page_parse.find('<hint lang="ru">')
+    description_probki_end =page_parse.find('</hint>')
+    description_probki = page_parse[description_probki_start+16:description_probki_end]
+
+
+    description_probki= ' '.join(description_probki.split())
+    msg+= '- ' + description_probki
+
+    return msg
+
+
+
