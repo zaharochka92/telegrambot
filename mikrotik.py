@@ -19,7 +19,7 @@ def mikrotik_cmd(dev):
     except Exception as e:
         return  f'Some error:{e}'
 
-#
+#i try api func later
 # connection = routeros_api.RouterOsApiPool(ip, username='', password='', use_ssl=False)
 # api = connection.get_api()
 # list = api.get_resource('/interface wireless disable wlan2 ')

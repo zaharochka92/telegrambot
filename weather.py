@@ -2,12 +2,12 @@ import requests
 from datetime import datetime, date, time
 
 
-def weather():
+def weather(openweather_token):
     dt = datetime.now()
     dt = dt.date()
     s_city = "Moscow, RU"
     city_id = 0
-    appid = "dfc68f338cf3ef8e1a48ae3741312cc4"
+    appid = openweather_token
     msgshrt = f'Погода в Москве {dt}:\n'
     try:
         res = requests.get("http://api.openweathermap.org/data/2.5/find",
