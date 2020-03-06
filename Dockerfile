@@ -12,5 +12,7 @@ COPY rssnews.py ./
 COPY probki.py ./
 COPY weather.py ./
 COPY mikrotik.py ./
+COPY aruba.py ./
+COPY teletokens.py ./
 
 CMD [ "python", "./telegbot.py" ]

@@ -3,24 +3,20 @@ import ArubaCloud
 from ArubaCloud.PyArubaAPI import CloudInterface
 from ArubaCloud.objects.VmTypes import Smart, Pro
 
-ci = CloudInterface(dc=7)
-ci.login(username="AWI-256466", password="jqoYS212-j", load=True)
 
-ci.create_snapshot(dc=7, server_id=26293)
-# print(ci.get_vm())
-# print(ci.get_virtual_datacenter())
+def arubainfo(username, password):
+    try:
+        ci = CloudInterface(dc=7)
+        ci.login(username=username, password=password, load=True)
+        json_data=ci.get_virtual_datacenter()
+        # print(json.dumps(json_data,indent=2))
+        pprint.pprint(json_data)
 
-# ci.get_servers()
-#
+        for vm in ci.vmlist:
+            print("VM Name: {}".format(vm.vm_name))
+            print("VM Type: {}".format(type(vm)))
 
-#
-# for vm in ci.vmlist:
-#     print("VM Name: {}".format(vm.vm_name))
-#     print("VM Type: {}".format(type(vm)))
-#
-#     if isinstance(vm, Smart):
-#         print("VM IP: {}".format(vm.ip_addr))
-#     elif isinstance(vm, Pro):
-#         for ip in vm.ip_addr:
-#             print("VM IP: {}".format(ip.ip_addr))
-#     print("############################")
+            print("VM IP: {}".format(vm.ip_addr))
+            print("############################")
+    except:
+        return 'some_error'
