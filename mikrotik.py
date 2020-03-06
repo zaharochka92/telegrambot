@@ -1,6 +1,6 @@
 import netmiko
-from returns.result import Result, safe
-import routeros_api
+#from returns.result import Result, safe
+#import routeros_api
 # выполнение одной комманды из списка commands=[,,,,] это модифицированный чужой код
 
 def mikrotik_cmd(dev):
