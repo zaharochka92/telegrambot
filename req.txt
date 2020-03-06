@@ -10,4 +10,6 @@ requests-html==0.10.0
 soupsieve==1.9.5
 netmiko==3.0.0
 paramiko==2.7.1
+RouterOS-api==0.17.0
+typing-extensions==3.7.4.1
 

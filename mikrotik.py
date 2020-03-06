@@ -1,18 +1,28 @@
 import netmiko
-from pprint import pprint
-
+from returns.result import Result, safe
+import routeros_api
 # выполнение одной комманды из списка commands=[,,,,] это модифицированный чужой код
-def mikrotik_cmd(ip):
-    dev={'device_type':'cisco_ios','username':'admin+ct80h','password':'zakharov1992','verbose':True,'ip':ip}
-    commands = '/system resource print'
-    with  netmiko.ConnectHandler(**dev,default_enter="\n\r") as ssh:
 
-          result=ssh.send_command(commands)
-    result1=''
-    result = result.split('\n')
+def mikrotik_cmd(dev):
+    try:
+        commands = '/system resource print'
+        with  netmiko.ConnectHandler(**dev,default_enter="\n\r") as ssh:
 
-    for line in result:
-        result1+=' '.join(line.split())
-        result1+='\n'
-    return result1
+              result=ssh.send_command(commands)
+        result1=''
+        result = result.split('\n')
 
+        for line in result:
+            result1+=' '.join(line.split())
+            result1+='\n'
+        return result1
+    except Exception as e:
+        return  f'Some error:{e}'
+
+#
+# connection = routeros_api.RouterOsApiPool(ip, username='', password='', use_ssl=False)
+# api = connection.get_api()
+# list = api.get_resource('/interface wireless disable wlan2 ')
+# print(list)
+#
+# connection.disconnect()

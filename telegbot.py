@@ -1,6 +1,5 @@
 import telebot
 from telebot import types
-bot = telebot.TeleBot('926769897:AAEJPSp4BOrg5ba_iwobt2zkbIgT9F1dtIc') #token blya
 from weather import weather
 from exchange import currence
 from  meduzanews import meduzanews
@@ -8,9 +7,11 @@ from rssnews import overclockersnews
 from rssnews import habrhabr
 from probki import probki
 from mikrotik import mikrotik_cmd
+from teletokens import *
 
-
-
+bot = telebot.TeleBot(teletoken) #token blya
+devhome = {'device_type': 'cisco_ios', 'username': user_mikro, 'password': password_mikro, 'verbose': True, 'ip': ip_mikro_home}
+devdacha = {'device_type': 'cisco_ios', 'username': user_mikro, 'password': password_mikro, 'verbose': True, 'ip': ip_mikro_dacha}
 
 @bot.message_handler(content_types=['text'])
 
@@ -21,10 +22,10 @@ def get_text_messages(message):
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True) # клавиатура основного функционала бота
         item1 = types.KeyboardButton("Погода")  # парсинг погода с сайта опен везер
         item2 = types.KeyboardButton('Валюта')  # парсинг курс валют с цб
-        item3 = types.KeyboardButton('Новости')
-        item4 = types.KeyboardButton('Пробки')
+        item3 = types.KeyboardButton('Новости') # новости
+        item4 = types.KeyboardButton('Пробки') # пробки
         item5 = types.KeyboardButton('Mikrotik')
-        item6 = types.KeyboardButton('Flibustabook')
+        # item6 = types.KeyboardButton('Flibustabook')
         markup.add(item1, item2, item3, item4, item5, item6)
         bot.send_message(message.chat.id, "Кнопки должны были появится!",  reply_markup=markup)
         pass
@@ -54,10 +55,10 @@ def get_text_messages(message):
         item2 = types.InlineKeyboardButton("dacha", callback_data='mikrodacha')
         markup.add(item1, item2)
         bot.send_message(message.chat.id, 'Mikrotik', reply_markup=markup)
-    elif message.text == 'Flibustabook':
-        bot.send_message(message.from_user.id, "Я помогу найти книгу на сайте Flibusta")
-        bot.send_message(message.from_user.id, "введи название книги")
-        bot.register_next_step_handler(message, get_book_name)
+    # elif message.text == 'Flibustabook':
+    #     bot.send_message(message.from_user.id, "Я помогу найти книгу на сайте Flibusta")
+    #     bot.send_message(message.from_user.id, "введи название книги")
+    #     bot.register_next_step_handler(message, get_book_name)
 
     else:
         bot.send_message(message.from_user.id, "Я тебя не понимаю! Напиши /help.")
@@ -100,15 +101,16 @@ def callback_worker(call):
 
 
     elif call.data == 'mikrodacha':
-        c=mikrotik_cmd('192.168.42.200')
-        bot.send_message(call.message.chat.id, c)
+        c=mikrotik_cmd(devdacha)
         bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Информация Микротик Дача",
                               reply_markup=None)
-    elif call.data == 'mikrohome':
-        c=mikrotik_cmd('192.168.42.100')
         bot.send_message(call.message.chat.id, c)
+    elif call.data == 'mikrohome':
+        c=mikrotik_cmd(devhome)
         bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Информация Микротик Дом",
                               reply_markup=None)
+        bot.send_message(call.message.chat.id, c)
+
     else:
         bot.send_message(message.from_user.id, 'я тебя не понимать')
 

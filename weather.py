@@ -1,14 +1,14 @@
 import requests
 from datetime import datetime, date, time
-dt=datetime.now()
-dt=dt.date()
+
 
 def weather():
-
+    dt = datetime.now()
+    dt = dt.date()
     s_city = "Moscow, RU"
     city_id = 0
     appid = "dfc68f338cf3ef8e1a48ae3741312cc4"
-    msgshrt=f'Погода в Москве {dt}:\n'
+    msgshrt = f'Погода в Москве {dt}:\n'
     try:
         res = requests.get("http://api.openweathermap.org/data/2.5/find",
                      params={'q': s_city, 'type': 'like', 'units': 'metric', 'APPID': appid})
@@ -55,5 +55,5 @@ def weather():
     except Exception as e:
         print("Exception (forecast):", e)
         pass
-    msglong=''
+    msglong = ''
     return msgshrt, msglong
