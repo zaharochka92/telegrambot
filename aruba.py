@@ -2,7 +2,7 @@ import argparse
 import ArubaCloud
 from ArubaCloud.PyArubaAPI import CloudInterface
 from ArubaCloud.objects.VmTypes import Smart, Pro
-
+from teletokens import *
 
 def arubainfo(username, password):
     try:
