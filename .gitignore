@@ -14,3 +14,5 @@ probki.jpg
 
 /test.py
 *.key
+teletokens.conf
+teletokens.py
