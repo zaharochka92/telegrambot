@@ -3,10 +3,10 @@
 Бот умеет парсить погоду, пробки, курсы валют и новости
 Так же имеется скрипт для автоматического развертывания бота в облаке.
 
-
+###
 Все ключи хранятся в файле
-
-#teletokens.py :
+создайте и скопируйте в py файл
+teletokens.py :
   teletoken = '' #tokens telegram 
   
   ip_mikro_home = '' #ip mikrotik
@@ -32,4 +32,12 @@
   port =  # ssh port for netmiko
   
   gitrepo = '' #git repo in format user:password@github.com/repourl
+  ###
+  добавлены файлы для автоматической установки докера на сервер
+  утсановка ansible:
+  pip install ansible
+  обновление зависимостей ansible:
+  ansible-galaxy install -r requirements.yml
+  установка докера:
+  ansible-playbook -i 'ip_host,' docker.yml
   
