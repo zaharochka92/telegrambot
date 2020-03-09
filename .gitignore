@@ -1,11 +1,15 @@
 .idea
 .idea/inspectionProfiles/profiles_settings.xml
+.git
+venv
+teletokens.py
+autoupgrage.py
 __pycache__
 .DS_Store
 screenshot.png
 image_name.jpg
 probki.jpg
 /reed.txt
-/teletokens.py
-/autoupgrade.py
+
+
 /test.py
