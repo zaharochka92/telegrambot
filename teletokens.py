@@ -5,4 +5,4 @@ user_mikro = 'admin+ct80h'
 password_mikro = 'zakharov1992'
 arubalogin = 'AWI-256466'
 arubapassword = 'jqoYS212-j"'
-openweather_token = "dfc68f338cf3ef8e1a48ae3741312cc4"
+openweather_token = ""
