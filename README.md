@@ -4,6 +4,7 @@
 Так же имеется скрипт для автоматического развертывания бота в облаке.
 
 Все ключи хранятся в файле
+
 teletokens.py 
 teletoken = '' #tokens telegram
 ip_mikro_home = '' #ip mikrotik
