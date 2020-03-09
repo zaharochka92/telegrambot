@@ -2,7 +2,7 @@
 .idea/inspectionProfiles/profiles_settings.xml
 .git
 venv
-teletokens.py
+
 autoupgrage.py
 __pycache__
 .DS_Store
