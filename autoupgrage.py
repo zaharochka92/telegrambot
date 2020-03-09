@@ -17,7 +17,7 @@ device = {
 }
 
 command = ['cd /telegrambot', f'git pull {gitrepo} master',
-           'docker stop telebot-docker telebot-docker', 'docker rm telebot-docker', 'docker build -t telebot-docker .', 'docker run -it -P  --restart unless-stopped --name telebot-docker telebot-docker']
+           'docker stop telebot-docker telebot-docker', 'docker rm telebot-docker', 'docker build -t telebot-docker .', 'docker run -it -P  --restart unless-stopped --name telebot-docker telebot-docker' ]
 
 net_connect = Netmiko(**device)
 for cmd in command:
