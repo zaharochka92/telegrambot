@@ -33,11 +33,17 @@ teletokens.py :
   
   gitrepo = '' #git repo in format user:password@github.com/repourl
   ###
-  добавлены файлы для автоматической установки докера на сервер
+  добавлены файлы для автоматической установки докера на сервер c помощью ansible
+  
   утсановка ansible:
-  pip install ansible
-  обновление зависимостей ansible:
+  
+  pip install ansible(или по другому)
+  
+  обновление зависимостей ansible galaxy:
+  
   ansible-galaxy install -r requirements.yml
+  
   установка докера:
+  
   ansible-playbook -i 'ip_host,' docker.yml
   
