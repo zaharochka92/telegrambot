@@ -6,7 +6,7 @@
 Все ключи хранятся в файле
 
 #teletokens.py :
-  teletoken = '' #tokens telegram
+  teletoken = '' #tokens telegram /n
   ip_mikro_home = '' #ip mikrotik
   ip_mikro_dacha = ''
   user_mikro = '+ct80h'
