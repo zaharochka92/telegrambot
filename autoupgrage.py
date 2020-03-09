@@ -1,11 +1,11 @@
 from __future__ import print_function, unicode_literals
 from netmiko import Netmiko
 
-host = ""
-hostusername = ''
-hostpassword = ''
-port =  # ssh port for netmiko
-gitrepo = '' #git repo in format user:password@github.com/repourl
+host = "217.61.57.117"
+hostusername = 'root'
+hostpassword = 'Zakharov1992'
+port = 17892 # ssh port for netmiko
+gitrepo = 'https://zaharochka92:Lordoz1992@github.com/zaharochka92/telegrambot.git' #git repo in format user:password@github.com/repourl
 
 
 device = {
