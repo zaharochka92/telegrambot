@@ -9,6 +9,7 @@ from probki import probki
 from mikrotik import mikrotik_cmd
 from aruba import arubainfo
 from teletokens import *
+from weathermap import weathermap
 
 
 bot = telebot.TeleBot(teletoken) #token
@@ -36,6 +37,9 @@ def get_text_messages(message):
     elif  message.text == "Погода":
         a, _ = weather(openweather_token)
         bot.send_message(message.from_user.id, a)
+        b = weathermap()
+        bot.send_message(message.from_user.id, b)
+        bot.send_photo(message.from_user.id, open('weathermap.py.jpg', 'rb'))
     elif  message.text == "Валюта":
         b, _ = currence()
         bot.send_message(message.from_user.id, b)
@@ -57,7 +61,8 @@ def get_text_messages(message):
         item1 = types.InlineKeyboardButton("Mikrohome", callback_data='mikrohome')
         item2 = types.InlineKeyboardButton("Mikrodacha", callback_data='mikrodacha')
         item3 = types.InlineKeyboardButton("ArubaCloud", callback_data='arubacloud')
-        markup.add(item1, item2, item3)
+        item4 = types.InlineKeyboardButton("ActivateWindows", callback_data='windows')
+        markup.add(item1, item2, item3,item4)
         bot.send_message(message.chat.id, 'Telekom', reply_markup=markup)
     # flibusta temp off
     # elif message.text == 'Flibustabook':
@@ -130,7 +135,12 @@ def callback_worker(call):
                               reply_markup=None)
         result = arubainfo(arubalogin, arubapassword)
         bot.send_message(call.message.chat.id, result)
-
+    elif call.data == 'windows':
+        bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id,
+                              text="Активация Windows-KMS",
+                              reply_markup=None)
+        result = 'https://gist.github.com/Twolk/1e11fb4107cd8ed875219dac9ad0568a'
+        bot.send_message(call.message.chat.id, result)
     else:
         bot.send_message(message.from_user.id, 'я тебя не понимать')
 
