@@ -6,6 +6,8 @@ screenshot.png
 image_name.jpg
 probki.jpg
 /reed.txt
-/teletokens.py
-/autoupgrade.py
+teletokens.py
+autoupgrade.py
 /test.py
+weathermap.png
+geckodriver.log
